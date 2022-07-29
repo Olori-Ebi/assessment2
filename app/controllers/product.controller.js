@@ -57,7 +57,9 @@ class ProductController {
           product.lat,
           product.long
         );
-        if (getDistanceByLatLong <= product.radius + radius) {
+        if ((getDistanceByLatLong <= product.radius + +radius) || (product.user.id === userId)) {
+          console.log('user Distance', getDistanceByLatLong);
+          console.log('product Distance', product.radius + +radius);
             return product;
         }
       });

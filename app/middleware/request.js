@@ -24,6 +24,22 @@ exports.validateProduct = (req, res, next) => {
     return next();
   };
   
+exports.validateComment = (req, res, next) => {
+    const validated = Validator.createComment(req.body);
+    if (validated.error) {
+      return handleValidationError(validated.error, res);
+    }
+    return next();
+  };
+  
+exports.validateCommentReply = (req, res, next) => {
+    const validated = Validator.createReply(req.body);
+    if (validated.error) {
+      return handleValidationError(validated.error, res);
+    }
+    return next();
+  };
+  
   const handleValidationError = (validationError, res) => {
       const message = validationError.details[0].message;
       return res.status(400).json({message})

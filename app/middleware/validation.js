@@ -35,3 +35,17 @@ exports.createProduct = (payload) => {
     });
     return schema.validate(payload, {allowUnknown: true});
 };
+
+exports.createComment = (payload) => {
+    const schema = Joi.object({
+        text: Joi.string().required(),
+    });
+    return schema.validate(payload, {allowUnknown: true});
+};
+
+exports.createReply = (payload) => {
+    const schema = Joi.object({
+        replyText: Joi.string().required(),
+    });
+    return schema.validate(payload, {allowUnknown: true});
+};
